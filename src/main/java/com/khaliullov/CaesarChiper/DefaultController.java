@@ -11,12 +11,13 @@ public class DefaultController {
 
     @GetMapping("/")
     public String index(Model model){
+        model.addAttribute("content", CaesarCipher.getText());
         return "index";
     }
 
     @PostMapping("/")
-    public String postIndex(@RequestParam String text, @RequestParam boolean flag, Model model){
-        model.addAttribute("code", CaesarCipher.run(text, flag));
-        return "index";
+    public String postIndex(@RequestParam String text, @RequestParam String confirm, Model model){
+        model.addAttribute("text", CaesarCipher.run(text, confirm));
+        return "redirect:/";
     }
 }

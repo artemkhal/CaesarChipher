@@ -1,27 +1,36 @@
 package com.khaliullov.CaesarChiper;
 
-import org.springframework.stereotype.Service;
 
 public class CaesarCipher {
 
-    public static String run(String text, boolean flag){
-        if (flag) return cipher(text);
-        else return decoder(text);
+    private static String text = "Здесь будет перевод";
+    private static int offset = 11;
+
+
+    public static String run(String text, String confirm){
+        if (confirm.equals("on")){
+            return decoder(text);
+        }
+        return cipher(text);
     }
 
-    private static int offset = 11;
+    public static String getText() {
+        return text;
+    }
+
 
     public static String cipher(String message){
         StringBuilder result = new StringBuilder();
         for (char chara : message.toCharArray()){
-            if (check(chara)){
+            if (chara != ' '){
                 int originalAlphabetPosition = chara - (char) 'а';
-                int newAlphabetPosition = (originalAlphabetPosition + offset) % 33;
+                int newAlphabetPosition = (originalAlphabetPosition + offset);
                 char newCharacter = (char) ('а' + newAlphabetPosition);
                 result.append(newCharacter);
             } else result.append(chara);
         }
-        return result.toString();
+        text = result.toString();
+        return text;
 
     }
 
@@ -29,20 +38,21 @@ public class CaesarCipher {
         int index = offset - (offset * 2);
         StringBuilder result = new StringBuilder();
         for (char chara : message.toCharArray()){
-            if (check(chara)){
+            if (chara != ' '){
                 int originalAlphabetPosition = chara - 'а';
-                int newAlphabetPosition = (originalAlphabetPosition + index) % 33;
+                int newAlphabetPosition = (originalAlphabetPosition + index);
                 char newCharacter = (char) ('а' + newAlphabetPosition);
                 result.append(newCharacter);
             } else result.append(chara);
         }
-        return result.toString();
+        text = result.toString();
+        return text;
     }
 
     private static boolean check(char symbol){
-        char[] uncorrected = {' ', '.', ',', 'ё', '!', '?', ':', '-', '%', ';', '—'};
-        for (char ch : uncorrected){
-            if (symbol == ch) return false;
+        int i = symbol;
+        if ((i < (char) 'А') && (i > (char) 'я') ){
+            return false;
         }
         return true;
     }
