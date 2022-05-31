@@ -18,7 +18,7 @@
     <h1 class="display-4 fw-bold">Кодировщик текста</h1>
     <div class="col-lg-6 mx-auto mt-5">
         <form action="/" method="post">
-            <textarea name="text" placeholder="— Думаешь, Фьюри что-то скрывает от нас?" class="form-control" rows="6"></textarea>
+            <textarea name="text" placeholder="— Думаешь, Фьюри что-то скрывает от нас?" class="form-control" rows="10"></textarea>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5 mt-5">
                 <div class="form-check mt-1">
                     <input class="form-check-input" type="radio" name="confirm" th:value="null" id="flexRadioDefault1" checked>
@@ -34,7 +34,7 @@
     </div>
     <p class="text-center" th:text="${content}"></p>
 </div>
-<footer class="bg-light text-center text-lg-start">
+<footer class="bg-light text-center text-lg-start" style="position: absolute; width: 100%; top: 95%;">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         © Artem Khaliullov
